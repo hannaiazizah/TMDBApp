@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.hanna.pagingnews'
+    namespace 'com.hanna.pagingmovies'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.hanna.pagingnews"
+        applicationId "com.hanna.pagingmovies"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -52,7 +52,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
-    def paging_version = "3.0.0" //current version at the time
+    // paging
+    def paging_version = "3.1.1" //current version at the time
     implementation "androidx.paging:paging-runtime:$paging_version"
 
     // dagger-hilt
