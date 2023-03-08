@@ -9,5 +9,5 @@ data class MovieResponse(
     @SerializedName("release_date")val releaseDate: String,
     @SerializedName("vote_average")val rate: Double,
     @SerializedName("vote_count")val rateCount: Long,
-    @SerializedName("poster_path") val imagePath: String,
+    @SerializedName("poster_path") val imagePath: String? = null,
 )
