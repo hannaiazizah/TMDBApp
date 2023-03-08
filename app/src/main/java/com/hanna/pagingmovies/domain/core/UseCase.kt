@@ -16,23 +16,4 @@ import kotlinx.coroutines.launch
  * adjusted from https://github.com/android10/Android-CleanArchitecture-Kotlin/
  */
 
-abstract class UseCase<out Type, in Params> where Type : Any {
-
-    abstract suspend fun run(params: Params): Either<Failure, Type>
-
-    operator fun invoke(
-        params: Params,
-        scope: CoroutineScope,
-        appDispatchers: AppDispatchers,
-        onResult: (Either<Failure, Type>) -> Unit = {}
-    ) {
-        scope.launch {
-            val deferred = async(appDispatchers.io) {
-                run(params)
-            }
-            onResult(deferred.await())
-        }
-    }
-
-    class None
-}
+abstract class UseCase<Type, Params> : BaseUseCase<Either<Failure, Type>, Params>()

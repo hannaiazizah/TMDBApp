@@ -7,6 +7,6 @@ package com.hanna.pagingmovies.domain.core
 sealed class Failure {
     object DataFormatError : Failure()
     object UnknownError: Failure()
-    class ServerError(val exception: Exception) : Failure()
+    class ServerError(val throwable: Throwable?) : Failure()
     object Empty : Failure()
 }
