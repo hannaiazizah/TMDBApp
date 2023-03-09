@@ -34,7 +34,7 @@ Users can scroll down to see more movies or reviews on the list of movies and us
 ## Installation
 - Clone the repository:
   ```bash
-  git@github.com:hannaiazizah/TextRecognition.git
+  git@github.com:hannaiazizah/TMDBApp.git
   ```
 - Import the project into Android Studio.
 - Run the application
