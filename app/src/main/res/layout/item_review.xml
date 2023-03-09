@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="12dp"
-    android:layout_height="match_parent">
+    android:layout_marginVertical="8dp"
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivReviewAvatar"
@@ -41,13 +41,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:ellipsize="end"
-        android:maxLines="3"
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvReviewDate"
         app:layout_constraintTop_toBottomOf="@id/ivReviewAvatar"
         tools:text="Lorem ipsum" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/purple_700"
+        android:layout_marginVertical="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvReviewContent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

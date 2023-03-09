@@ -4,6 +4,8 @@
     <!-- Strings used for fragments for navigation -->
     <string name="genre_fragment_label">Genre</string>
     <string name="discover_fragment_label">Discovers</string>
-    <string name="caption_error_load_genre">Failed to load Genre. Please try again.</string>
+    <string name="caption_error_load_genre">Failed to load data. Please try again.</string>
     <string name="label_try_again">Try again</string>
+    <string name="label_movie_detail">Movie Detail</string>
+    <string name="label_watch_trailer">Watch Trailer</string>
 </resources>

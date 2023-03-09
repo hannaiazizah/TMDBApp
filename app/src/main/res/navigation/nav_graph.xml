@@ -30,11 +30,8 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.hanna.pagingmovies.presentation.detail.DetailsFragment"
-        android:label="{movieTitle}"
+        android:label="@string/label_movie_detail"
         tools:layout="@layout/fragment_details">
-        <argument
-            android:name="movieTitle"
-            app:argType="string" />
         <argument
             android:name="movieId"
             app:argType="integer" />

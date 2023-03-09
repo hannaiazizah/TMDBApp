@@ -4,16 +4,16 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 
-const val SERVER_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+const val SERVER_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 const val UI_DATE_FORMAT = "dd MMM yyyy • HH:mm"
 const val SERVER_DATE_2_FORMAT = "yyyy-MM-dd"
-const val UI_DATE_2_FORMAT = "dd MM yyyy"
+const val UI_DATE_2_FORMAT = "dd MMM yyyy"
 
 fun String.toUiFullDate(): String {
-    val format = SimpleDateFormat(SERVER_DATE_FORMAT, Locale.ENGLISH)
+    val input = SimpleDateFormat(SERVER_DATE_FORMAT, Locale.ENGLISH)
     val output = SimpleDateFormat(UI_DATE_FORMAT, Locale.ENGLISH)
     return try {
-        val date = format.parse(this)
+        val date = input.parse(this)
         if (date != null) output.format(date) else this
     } catch (e: Exception) {
         this

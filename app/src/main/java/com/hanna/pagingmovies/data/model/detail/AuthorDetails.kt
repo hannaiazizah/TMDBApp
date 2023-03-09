@@ -1,4 +1,4 @@
-package com.hanna.pagingmovies.data.model.reviews
+package com.hanna.pagingmovies.data.model.detail
 
 import com.google.gson.annotations.SerializedName
 

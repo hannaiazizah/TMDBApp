@@ -1,29 +1,35 @@
 package com.hanna.pagingmovies.domain.usecase
 
+import androidx.paging.PagingData
+import androidx.paging.map
+import com.hanna.pagingmovies.data.model.detail.MovieDetailResponse
+import com.hanna.pagingmovies.data.model.detail.ReviewResponse
 import com.hanna.pagingmovies.data.repository.MoviesRepository
-import com.hanna.pagingmovies.domain.core.Either
-import com.hanna.pagingmovies.domain.core.Failure
-import com.hanna.pagingmovies.domain.core.UseCase
+import com.hanna.pagingmovies.domain.core.BaseUseCase
 import com.hanna.pagingmovies.domain.model.DetailUiModel
+import com.hanna.pagingmovies.domain.model.DetailsUiModel
+import com.hanna.pagingmovies.domain.model.ReviewUiModel
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class GetMovieDetailsUseCase @Inject constructor(
     private val repository: MoviesRepository
-): UseCase<DetailUiModel, GetMovieDetailsUseCase.Params>() {
+): BaseUseCase<Flow<PagingData<DetailsUiModel>>, GetMovieDetailsUseCase.Params>() {
 
     data class Params(
         val movieId: Int,
     )
 
-    override suspend fun run(params: Params): Either<Failure, DetailUiModel> {
-        val result = repository.getMoviesDetail(params.movieId)
-        val data = result.getOrNull()
-        return if (data != null) {
-            val uiModel = DetailUiModel.toUiModel(data)
-            Either.success(uiModel)
-        } else {
-            val e = result.exceptionOrNull()
-            Either.fail(Failure.ServerError(e))
-        }
+    override fun run(params: Params): Flow<PagingData<DetailsUiModel>> {
+        return repository.getMoviesDetail(params.movieId)
+            .map {
+                it.map { response ->
+                    when(response) {
+                        is MovieDetailResponse -> DetailUiModel.toUiModel(response)
+                        is ReviewResponse -> ReviewUiModel.toUiModel(response)
+                    }
+                }
+            }
     }
 }

@@ -2,19 +2,20 @@ package com.hanna.pagingmovies.data.source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.hanna.pagingmovies.data.model.reviews.ReviewResponse
+import com.hanna.pagingmovies.data.core.handleApi
+import com.hanna.pagingmovies.data.model.detail.MovieDetailsResponse
 import com.hanna.pagingmovies.data.service.MovieService
 import java.io.IOException
 import retrofit2.HttpException
 
-class ReviewPagingSource(
+class DetailsPagingSource(
     private val service: MovieService,
     private val movieId: Int
-) : PagingSource<Int, ReviewResponse>() {
+) : PagingSource<Int, MovieDetailsResponse>() {
     /**
      * The refresh key is used for subsequent calls to PagingSource.Load after the initial load.
      */
-    override fun getRefreshKey(state: PagingState<Int, ReviewResponse>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, MovieDetailsResponse>): Int? {
         // We need to get the previous key (or next key if previous is null) of the page
         // that was closest to the most recently accessed index.
         // Anchor position is the most recently accessed index.
@@ -24,16 +25,27 @@ class ReviewPagingSource(
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ReviewResponse> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDetailsResponse> {
         val pageIndex = params.key ?: TMDB_STARTING_PAGE_INDEX
+        val data = mutableListOf<MovieDetailsResponse>()
         return try {
+            if (pageIndex == TMDB_STARTING_PAGE_INDEX) {
+                val detail = service.getMovieDetails(
+                    movieId,
+                    "videos,reviews"
+                )
+                if (detail.isSuccessful && detail.body() != null) {
+                    data.add(detail.body()!!)
+                }
+            }
             val response = service.getMovieReviews(
                 movieId = movieId,
                 page = pageIndex
             )
-            val movies = response.results
+            val reviews = response.results
+            data.addAll(reviews)
             val nextKey =
-                if (movies.isEmpty()) {
+                if (reviews.isEmpty()) {
                     null
                 } else {
                     // By default, initial load size = 3 * NETWORK PAGE SIZE
@@ -41,7 +53,7 @@ class ReviewPagingSource(
                     pageIndex + (params.loadSize / NETWORK_PAGE_SIZE)
                 }
             LoadResult.Page(
-                data = movies,
+                data = data,
                 prevKey = if (pageIndex == TMDB_STARTING_PAGE_INDEX) null else pageIndex,
                 nextKey = nextKey
             )

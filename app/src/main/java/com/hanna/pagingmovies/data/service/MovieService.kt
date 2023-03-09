@@ -4,7 +4,7 @@ import com.hanna.pagingmovies.data.model.genre.GenreResponse
 import com.hanna.pagingmovies.data.model.discover.MovieResponse
 import com.hanna.pagingmovies.data.model.ResponseItems
 import com.hanna.pagingmovies.data.model.detail.MovieDetailResponse
-import com.hanna.pagingmovies.data.model.reviews.ReviewResponse
+import com.hanna.pagingmovies.data.model.detail.ReviewResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

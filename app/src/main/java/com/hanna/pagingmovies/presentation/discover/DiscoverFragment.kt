@@ -58,7 +58,7 @@ class DiscoverFragment : Fragment() {
 
     private fun goToDetailsScreen(movie: MovieUiModel) {
         val action = DiscoverFragmentDirections
-            .actionDiscoveryFragmentToDetailsFragment(movie.title, movie.id)
+            .actionDiscoveryFragmentToDetailsFragment(movie.id)
         findNavController().safeNavigate(action)
     }
 
@@ -97,6 +97,7 @@ class DiscoverFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.rvDiscoverList.adapter = null
         _binding = null
     }
 }
