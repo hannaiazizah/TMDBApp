@@ -3,6 +3,7 @@ package com.hanna.pagingmovies.domain.usecase
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.hanna.pagingmovies.data.repository.MoviesRepository
+import com.hanna.pagingmovies.domain.core.BaseSuspendUseCase
 import com.hanna.pagingmovies.domain.core.BaseUseCase
 import com.hanna.pagingmovies.domain.model.MovieUiModel
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class DiscoverMoviesUseCase @Inject constructor(
         val genreId: Int,
     )
 
-    override suspend fun run(params: Params): Flow<PagingData<MovieUiModel>> {
+    override fun run(params: Params): Flow<PagingData<MovieUiModel>> {
         return moviesRepository.discoverMoviesByGenre(params.genreId)
             .map {
                 it.map { response ->

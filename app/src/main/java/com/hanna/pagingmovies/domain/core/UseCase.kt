@@ -1,10 +1,5 @@
 package com.hanna.pagingmovies.domain.core
 
-import com.hanna.pagingmovies.data.core.AppDispatchers
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
  * This abstraction represents an execution unit for different use cases (this means that any use
@@ -16,4 +11,4 @@ import kotlinx.coroutines.launch
  * adjusted from https://github.com/android10/Android-CleanArchitecture-Kotlin/
  */
 
-abstract class UseCase<Type, Params> : BaseUseCase<Either<Failure, Type>, Params>()
+abstract class UseCase<Type, Params> : BaseSuspendUseCase<Either<Failure, Type>, Params>()

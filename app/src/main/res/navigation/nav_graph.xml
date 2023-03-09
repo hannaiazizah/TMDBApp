@@ -24,8 +24,8 @@
             android:name="genreId"
             app:argType="integer" />
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/genreFragment" />
+            android:id="@+id/action_discoveryFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"

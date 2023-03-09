@@ -48,7 +48,7 @@ class GenreFragment : Fragment() {
         adapter.setOnClickListener{
             navigateToDiscoverMovies(it.id)
         }
-        binding.btnRefresh.setOnClickListener {
+        binding.layoutGenreError.btnRefresh.setOnClickListener {
             viewModel.getGenres()
         }
         observeData()
@@ -66,12 +66,12 @@ class GenreFragment : Fragment() {
                     viewModel.genreResult.collectLatest {
                         it.onSuccess { data ->
                             binding.rvGenreList.isVisible = true
-                            binding.groupGenreError.isVisible = false
+                            binding.layoutGenreError.root.isVisible = true
                             adapter.submitData(data)
                         }
                         it.onFailure {
                             binding.rvGenreList.isVisible = false
-                            binding.groupGenreError.isVisible = true
+                            binding.layoutGenreError.root.isVisible = true
                         }
                     }
                 }

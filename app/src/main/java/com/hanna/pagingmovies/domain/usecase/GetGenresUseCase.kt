@@ -1,7 +1,7 @@
 package com.hanna.pagingmovies.domain.usecase
 
 import com.hanna.pagingmovies.data.repository.MoviesRepository
-import com.hanna.pagingmovies.domain.core.BaseUseCase
+import com.hanna.pagingmovies.domain.core.BaseSuspendUseCase
 import com.hanna.pagingmovies.domain.model.GenreUiModel
 import com.hanna.pagingmovies.domain.core.Either
 import com.hanna.pagingmovies.domain.core.Failure
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class GetGenresUseCase @Inject constructor(
     private val repository: MoviesRepository
-): UseCase<List<GenreUiModel>, BaseUseCase.None>() {
+): UseCase<List<GenreUiModel>, BaseSuspendUseCase.None>() {
     override suspend fun run(params: None): Either<Failure, List<GenreUiModel>> {
         val result = repository.getGenresMovies()
         val data = result.getOrNull()

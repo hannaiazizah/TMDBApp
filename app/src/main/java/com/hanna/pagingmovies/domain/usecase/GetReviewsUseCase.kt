@@ -3,6 +3,7 @@ package com.hanna.pagingmovies.domain.usecase
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.hanna.pagingmovies.data.repository.MoviesRepository
+import com.hanna.pagingmovies.domain.core.BaseSuspendUseCase
 import com.hanna.pagingmovies.domain.core.BaseUseCase
 import com.hanna.pagingmovies.domain.model.ReviewUiModel
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class GetReviewsUseCase @Inject constructor(
         val movieId: Int,
     )
 
-    override suspend fun run(params: Params): Flow<PagingData<ReviewUiModel>> {
+    override fun run(params: Params): Flow<PagingData<ReviewUiModel>> {
         return repository.getReviews(params.movieId)
             .map {
                 it.map { response ->

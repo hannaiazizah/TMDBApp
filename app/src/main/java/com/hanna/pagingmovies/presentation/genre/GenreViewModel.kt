@@ -2,12 +2,11 @@ package com.hanna.pagingmovies.presentation.genre
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hanna.pagingmovies.domain.core.BaseUseCase
+import com.hanna.pagingmovies.domain.core.BaseSuspendUseCase
 import com.hanna.pagingmovies.domain.core.Either
 import com.hanna.pagingmovies.domain.core.Failure
 import com.hanna.pagingmovies.domain.model.GenreUiModel
 import com.hanna.pagingmovies.domain.usecase.GetGenresUseCase
-import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -31,7 +30,7 @@ class GenreViewModel @Inject constructor(
     fun getGenres() {
         viewModelScope.launch {
             _isLoading.emit(true)
-            val result = getGenresUseCase.run(BaseUseCase.None())
+            val result = getGenresUseCase.run(BaseSuspendUseCase.None())
             _genreResult.emit(result)
             _isLoading.emit(false)
         }
