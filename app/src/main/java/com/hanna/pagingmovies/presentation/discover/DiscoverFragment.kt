@@ -1,4 +1,4 @@
-package com.hanna.pagingmovies.presentation
+package com.hanna.pagingmovies.presentation.discover
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.hanna.pagingmovies.R
-import com.hanna.pagingmovies.databinding.FragmentFirstBinding
+import com.hanna.pagingmovies.databinding.FragmentDiscoverBinding
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class FirstFragment : Fragment() {
+class DiscoverFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentDiscoverBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,9 +20,9 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentDiscoverBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -33,8 +30,8 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.buttonSecond.setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
 

@@ -1,12 +1,9 @@
 <resources>
-    <string name="app_name">PagingNews</string>
+    <string name="app_name">TMBD App</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="genre_fragment_label">Genre</string>
+    <string name="discover_fragment_label">Discovers</string>
+    <string name="caption_error_load_genre">Failed to load Genre. Please try again.</string>
+    <string name="label_try_again">Try again</string>
 </resources>

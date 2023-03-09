@@ -3,26 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/genreFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.hanna.pagingmovies.presentation.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/genreFragment"
+        android:name="com.hanna.pagingmovies.presentation.genre.GenreFragment"
+        android:label="@string/genre_fragment_label"
+        tools:layout="@layout/fragment_genre">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_genreFragment_to_discoveryFragment"
+            app:destination="@id/discoveryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.hanna.pagingmovies.presentation.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/discoveryFragment"
+        android:name="com.hanna.pagingmovies.presentation.discover.DiscoverFragment"
+        android:label="@string/discover_fragment_label"
+        tools:layout="@layout/fragment_discover">
+        <argument
+            android:name="genreId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/genreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.hanna.pagingmovies.presentation.detail.DetailsFragment"
+        android:label="{movieTitle}"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="movieTitle"
+            app:argType="string" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
     </fragment>
 </navigation>
