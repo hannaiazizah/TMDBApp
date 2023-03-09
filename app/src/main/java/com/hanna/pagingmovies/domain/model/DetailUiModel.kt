@@ -21,7 +21,7 @@ data class DetailUiModel(
                 DetailUiModel(
                     id = this.id,
                     title = this.title,
-                    overview = this.overview,
+                    overview = this.overview ?: "",
                     status = this.status,
                     totalReview = this.reviews.totalReviews,
                     genre = this.genres.genres.map { GenreUiModel.toUiModel(it) },

@@ -66,7 +66,7 @@ class GenreFragment : Fragment() {
                     viewModel.genreResult.collectLatest {
                         it.onSuccess { data ->
                             binding.rvGenreList.isVisible = true
-                            binding.layoutGenreError.root.isVisible = true
+                            binding.layoutGenreError.root.isVisible = false
                             adapter.submitData(data)
                         }
                         it.onFailure {

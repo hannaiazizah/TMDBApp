@@ -16,7 +16,7 @@ data class ReviewUiModel(
                     author = this.name,
                     username = this.authorDetails.username,
                     content = this.content,
-                    avatar = this.authorDetails.avatar,
+                    avatar = this.authorDetails.avatar ?: "",
                     date = this.createdDate.toUiFullDate()
                 )
             }
